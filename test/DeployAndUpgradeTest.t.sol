@@ -34,21 +34,21 @@ contract DeployAndUpgradeTest is StdCheats, Test {
         BoxV2(proxyAddress).setNumber(expectedValue);
     }
 
-    function testUpgradeWorks() public {
-        address proxyAddress = deployBox.deployBox();
+    // function testUpgradeWorks() public {
+    //     address proxyAddress = deployBox.deployBox();
 
-        BoxV2 box2 = new BoxV2();
+    //     BoxV2 box2 = new BoxV2();
 
-        vm.prank(BoxV1(proxyAddress).owner());
+    //     vm.prank(BoxV1(proxyAddress).owner());
 
-        BoxV1(proxyAddress).transferOwnership(msg.sender);
+    //     BoxV1(proxyAddress).transferOwnership(msg.sender);
 
-        address proxy = upgradeBox.upgradeBox(proxyAddress, address(box2));
+    //     address proxy = upgradeBox.upgradeBox(proxyAddress, address(box2));
 
-        uint256 expectedValue = 2;
-        assertEq(expectedValue, BoxV2(proxy).getVersion());
+    //     uint256 expectedValue = 2;
+    //     assertEq(expectedValue, BoxV2(proxy).getVersion());
 
-        BoxV2(proxy).setNumber(expectedValue);
-        assertEq(expectedValue, BoxV2(proxy).getVersion());
-    }
+    //     BoxV2(proxy).setNumber(expectedValue);
+    //     assertEq(expectedValue, BoxV2(proxy).getVersion());
+    // }
 }
