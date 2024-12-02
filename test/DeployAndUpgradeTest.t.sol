@@ -10,7 +10,6 @@ import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.s
 import {BoxV1} from "../src/BoxV1.sol";
 import {BoxV2} from "../src/BoxV2.sol";
 
-
 contract DeployAndUpgradeTest is StdCheats, Test {
     DeployBox public deployBox;
     UpgradeBox public upgradeBox;

@@ -15,20 +15,14 @@ interface IUUPSProxy {
 
 contract UpgradeBox is Script {
     function run() external returns (address) {
-        address proxyAddress = DevOpsTools.get_most_recent_deployment(
-            "ERC1967Proxy",
-            block.chainid
-        );
+        address proxyAddress = DevOpsTools.get_most_recent_deployment("ERC1967Proxy", block.chainid);
 
         vm.startBroadcast();
 
         BoxV2 newImplementation = new BoxV2();
         vm.stopBroadcast();
 
-        address upgradedProxy = upgradeBox(
-            proxyAddress,
-            address(newImplementation)
-        );
+        address upgradedProxy = upgradeBox(proxyAddress, address(newImplementation));
 
         return upgradedProxy;
     }
@@ -47,7 +41,7 @@ contract UpgradeBox is Script {
     //     return address(proxy);
     // }
 
-     function upgradeBox(address proxyAddress, address newImplementation) public returns (address) {
+    function upgradeBox(address proxyAddress, address newImplementation) public returns (address) {
         vm.startBroadcast();
 
         // Cast proxyAddress to the BoxV1 interface
